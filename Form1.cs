@@ -13,34 +13,11 @@ namespace Karesz
 {
 	public partial class Form1 : Form
 	{
-		bool done = false;
-		void FollowPath()
-		{
-			if (Van_e_itt_Kavics())
-			{
-				Vegyél_fel_egy_kavicsot();
-			}
-			for (int i = 0; i < 4; i++)
-			{
-				if (ZVan_e_előttem_kavics())
-				{
-					Lépj();
-					return;
-				}
-				Fordulj(balra);
-			}
-            done = true;
-        }
-
-
 		void DIÁK_ROBOTJAI()
 		{
 			Robot.Get("Karesz").Feladat = delegate ()
 			{
-				while (!done)
-				{
-					FollowPath();
-                }
+			
 			};
 		}
     }

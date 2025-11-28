@@ -44,7 +44,7 @@ namespace Karesz
 				Properties.Resources.Lilesz1,
 				Properties.Resources.Lilesz2,
 				Properties.Resources.Lilesz3
-			}; 
+			};
 			static readonly Bitmap[] képkészlet_golyesz = new Bitmap[4]
 			{
 				Properties.Resources.golyesz_up,
@@ -52,7 +52,7 @@ namespace Karesz
 				Properties.Resources.golyesz_down,
 				Properties.Resources.golyesz_left
 			};
-			
+
 			int Indexe() => Robot.lista.FindIndex(r => r == this);
 			public static bool ok_közül_valaki_még_dolgozik() => -1 < Robot.lista.FindIndex(r => !r.Kész);
 			#endregion
@@ -94,7 +94,7 @@ namespace Karesz
 			/// <param name="kődb">induláskor a zsebeiben lévő kövek száma</param>
 			/// <param name="szülőform">az eredeti form, a visszahivatkozáshoz kell</param>
 			/// <param name="pálya">a pálya, amin a robot mozog</param>
-			public Robot(string név, Bitmap[] képkészlet, int[] kődb, Vektor h, Vektor v )
+			public Robot(string név, Bitmap[] képkészlet, int[] kődb, Vektor h, Vektor v)
 			{
 				this.Név = név;
 				this.h = h;
@@ -104,7 +104,7 @@ namespace Karesz
 				this.helyigény = h;
 
 				if (0 == Robot.lista.Count)
-					Robot.megfigyeltindex = new ModuloSzam(0,1);
+					Robot.megfigyeltindex = new ModuloSzam(0, 1);
 				else
 					Robot.megfigyeltindex.ModulusNövelése();
 
@@ -135,9 +135,9 @@ namespace Karesz
 			public Robot(string adottnév) :
 				this(adottnév, 5, 28)
 			{ }
-            #endregion
-            #region Játékkezelés
-            static void ok_elindítása()
+			#endregion
+			#region Játékkezelés
+			static void ok_elindítása()
 			{
 				foreach (Robot robot in Robot.lista)
 					if (!robot.Kész)
@@ -172,41 +172,41 @@ namespace Karesz
 					if (robotok.Kész)
 						játék_megy = false;
 					else
-                        switch (akció)
-                        {
-                            case start:
+						switch (akció)
+						{
+							case start:
 								if (!játék.IsAlive)
 								{
 									játék.Start();
 									játék_megy = true;
 									játék_elindult = true;
 								}
-                                break;
-                            case pause:
-                                játék_megy = false;
-                                foreach (Robot robot in Robot.lista)
+								break;
+							case pause:
+								játék_megy = false;
+								foreach (Robot robot in Robot.lista)
 								{
-                                    if (robot.thread.IsAlive == true)
-									robot.thread.Suspend();
-                                }
-                                    
-                                break;
-                            case resume:
-                                játék_megy = true;
-                                foreach (Robot robot in Robot.lista)
-                                    robot.Start_or_Resume();
+									if (robot.thread.IsAlive == true)
+										robot.thread.Suspend();
+								}
 
-                                break;
-                            case step:
-                                steppel = true;
-                                foreach (Robot robot in Robot.lista)
-                                {
-                                    robot.Start_or_Resume();
-                                }
-                                steppel = false;
-                                break;
-                        }
-                }
+								break;
+							case resume:
+								játék_megy = true;
+								foreach (Robot robot in Robot.lista)
+									robot.Start_or_Resume();
+
+								break;
+							case step:
+								steppel = true;
+								foreach (Robot robot in Robot.lista)
+								{
+									robot.Start_or_Resume();
+								}
+								steppel = false;
+								break;
+						}
+				}
 
 			}
 			static void ok_léptetése()
@@ -218,22 +218,22 @@ namespace Karesz
 					robot.h = robot.helyigény;
 			}
 
-            private static void Új_lövedékek_létrehozása()
-            {
-                foreach ((Vektor, Vektor) p in Robot.Ellövendő_lövedékek)
-                {
+			private static void Új_lövedékek_létrehozása()
+			{
+				foreach ((Vektor, Vektor) p in Robot.Ellövendő_lövedékek)
+				{
 					(Vektor h, Vektor v) = p;
 					Robot golyesz = new Robot("Golyesz", képkészlet_golyesz, new int[] { 0, 0, 0, 0, 0 }, h, v);
 					golyesz.Feladat = delegate ()
 					{
-                        while (true)
+						while (true)
 							golyesz.Lépj();
 					};
-                }
+				}
 				Robot.Ellövendő_lövedékek.Clear();
-            }
+			}
 
-            static void holtak_eltávolítása()
+			static void holtak_eltávolítása()
 			{
 				foreach (Robot robot in Robot.halállista)
 				{
@@ -243,10 +243,10 @@ namespace Karesz
 					Robot.lista.Remove(robot);
 					megfigyeltindex.ModulusCsökkentése();
 
-                    if (robot.Elindult && !robot.Kész)
-                    {
+					if (robot.Elindult && !robot.Kész)
+					{
 						robot.thread.Suspend();
-                    }
+					}
 				}
 				Robot.halállista.Clear();
 			}
@@ -274,7 +274,7 @@ namespace Karesz
 			static void Halállistához(Func<Robot, Robot, bool> predikátum)
 			{
 				for (int i = 0; i < Robot.lista.Count; i++)
-					for (int j = i+1; j < Robot.lista.Count; j++)
+					for (int j = i + 1; j < Robot.lista.Count; j++)
 						if (predikátum(Robot.lista[i], Robot.lista[j]))
 						{
 							Robot.halállista.Add(Robot.lista[i]);
@@ -290,7 +290,7 @@ namespace Karesz
 					this.thread.Start();
 				else if (this.Vár && játék_megy || steppel)
 					if (this.thread.ThreadState == ThreadState.Suspended) // tudom, hogy hülyén néz ki ez az if statement nestelés, de ez valamiért csak így működik
-					this.thread.Resume();
+						this.thread.Resume();
 			}
 			#endregion
 			#region Motorok
@@ -309,50 +309,72 @@ namespace Karesz
 			/// </summary>
 			public void Lépj(int n = 1)
 			{
-				for (int i  = 0; i < n; i++)
+				for (int i = 0; i < n; i++)
 				{
-                    helyigény = h + v;
-                    Cselekvés_vége();
-                }
-			}
-			public void Sétálj()
-			{
-				while (!(MiVanElőttem() == fal) && !Ki_fog_lépni_a_pályáról())
-				{
-					Lépj();
+					helyigény = h + v;
+					Cselekvés_vége();
 				}
-			}
-			/// <summary>
-			/// Elforgatja a robotot a megadott irányban. (Csak normális irányokra reagál.)
-			/// </summary>
-			/// <param name="forgásirány"></param>
-			public void Fordulj(int forgásirány)
+            }
+            public void Sétálj()
+            {
+                while (!danger())
+                {
+                    Lépj();
+                }
+            }
+            /// <summary>
+            /// Kinyitja az ajtót ha van előtte, ezzel elveszítve egy kulcsot
+            /// </summary>
+            public void Nyiss_ajtót()
+            {
+                if (int.Parse(form.keyCount.Text) > 0)
+				{
+					if (MiVanElőttem() == dclosed)
+                    {
+						pálya.LegyenItt(H + v, dopen);
+                        form.keyCount.Text = $"{int.Parse(form.keyCount.Text) - 1}";
+                    }
+					else if (MiVanElőttem() == dopen)
+						Mondd("Ez az ajtó már nyitva van!");
+					else
+						Mondd("Nincs előttem ajtó!");
+                }
+				else
+				{
+					Mondd("Nincs kulcsom!");
+				}
+            }
+            /// <summary>
+            /// Elforgatja a robotot a megadott irányban. (Csak normális irányokra reagál.)
+            /// </summary>
+            /// <param name="forgásirány"></param>
+            public void Fordulj(int forgásirány)
 			{
 				v.Forgat(forgásirány);
 				Cselekvés_vége();
 			}
 			public void Nézz(int f)
 			{
-                switch (f)
-                {
-                    case 0:
-                        (v.X, v.Y) = (0, -1);
-                        break;
-                    case 1:
-                        (v.X, v.Y) = (1, 0);
-                        break;
-                    case 2:
-                        (v.X, v.Y) = (0, 1);
-                        break;
-                    case 3:
-                        (v.X, v.Y) = (-1, 0);
-                        break;
-                    default:
-                        (v.X, v.Y) = (0, 0);
-                        break;
-                }
+				switch (f)
+				{
+					case 0:
+						(v.X, v.Y) = (0, -1);
+						break;
+					case 1:
+						(v.X, v.Y) = (1, 0);
+						break;
+					case 2:
+						(v.X, v.Y) = (0, 1);
+						break;
+					case 3:
+						(v.X, v.Y) = (-1, 0);
+						break;
+					default:
+						(v.X, v.Y) = (0, 0);
+						break;
+				}
 				Cselekvés_vége();
-            }
+			}
 			/// <summary>
 			/// Lerakja az adott színű követ a pályán a robot helyére.
 			/// </summary>
@@ -376,7 +398,7 @@ namespace Karesz
 			/// </summary>
 			public void Vegyél_fel_egy_kavicsot()
 			{
-				if (pálya.MiVanItt(H) > fal)
+				if (Alatt_van_kavics())
 				{
 					++kődb[pálya.MiVanItt(H) - 2];
 					pálya.LegyenItt(H, üres);
@@ -402,7 +424,7 @@ namespace Karesz
 
 			static HashSet<(Vektor, Vektor)> Ellövendő_lövedékek = new HashSet<(Vektor, Vektor)>();
 
-            public void Várj() => Cselekvés_vége();
+			public void Várj() => Cselekvés_vége();
 			public void Mondd(string ezt) => MessageBox.Show(Név + ": " + ezt);
 
 			#endregion
@@ -415,18 +437,34 @@ namespace Karesz
 			/// <returns></returns>
 			public int Köveinek_száma_ebből(int szín) => kődb[szín - 2];
 
+			private bool danger() => new List<int> { fal, dclosed }.Contains(MiVanElőttem()) || Ki_fog_lépni_a_pályáról();
+
+			/// <summary>
+			/// Megadja, hogy mennyi ajtókulcsa van a robotnak.
+			/// </summary>
+			/// <param name="szín"></param>
+			/// <returns></returns>
+			public int Kulcsok_száma() => int.Parse(form.keyCount.Text);
+
 			/// <summary>
 			/// Megadja, hogy kavicson áll-e a robot.
 			/// </summary>
 			/// <returns></returns>
 			public bool Alatt_van_kavics() =>
-				pálya.MiVanItt(H) > fal;
+                new List<int> { fekete, piros, zöld, sárga }.Contains(pálya.MiVanItt(H));
 
-			/// <summary>
-			/// Megadja, hogy min áll a robot
-			/// </summary>
-			/// <returns></returns>
-			public int Alatt_ez_van() =>
+            /// <summary>
+            /// Megadja, hogy ajtókulcson áll-e a robot.
+            /// </summary>
+            /// <returns></returns>
+            public bool Alatt_van_kulcs() =>
+                pálya.MiVanItt(H) == key;
+
+            /// <summary>
+            /// Megadja, hogy min áll a robot
+            /// </summary>
+            /// <returns></returns>
+            public int Alatt_ez_van() =>
 				pálya.MiVanItt(H);
 
 			/// <summary>
@@ -443,16 +481,29 @@ namespace Karesz
 			public int MiVanElőttem() =>
 				MiVanElőttem(H + v);
 
-			/// <summary>
-			/// Pontosan akkor igaz, ha a robot előtt fal van.
-			/// </summary>
-			/// <returns></returns>
-			public bool Előtt_fal_van() => this.MiVanElőttem() == fal;
-			/// <summary>
-			/// Pontosan akkor igaz, ha a robot a pálya szélén van és a következő lépéssel kizuhanna a pályáról.
-			/// </summary>
-			/// <returns></returns>
-			public bool Ki_fog_lépni_a_pályáról() => this.MiVanElőttem() == nincs_pálya;
+            /// <summary>
+            /// Pontosan akkor igaz, ha a robot előtt fal van.
+            /// </summary>
+            /// <returns></returns>
+            public bool Előtt_fal_van() => this.MiVanElőttem() == fal;
+
+            /// <summary>
+            /// -1 ha előtte nem ajtó van, 0 ha zárt, 1 ha nyitott ajtó van.
+            /// </summary>
+            /// <returns></returns>
+            public int Előtte_lévő_ajtó()
+			{
+				if (this.MiVanElőttem() == dclosed)
+					return 0;
+				else if (this.MiVanElőttem() == dopen)
+					return 1;
+				return -1;
+			}
+            /// <summary>
+            /// Pontosan akkor igaz, ha a robot a pálya szélén van és a következő lépéssel kizuhanna a pályáról.
+            /// </summary>
+            /// <returns></returns>
+            public bool Ki_fog_lépni_a_pályáról() => this.MiVanElőttem() == nincs_pálya;
 
 			public (int, int) Hol_vagyok() => (Convert.ToInt32(form.pozícióXtextbox.Text), Convert.ToInt32(form.pozícióYtextbox.Text));
 

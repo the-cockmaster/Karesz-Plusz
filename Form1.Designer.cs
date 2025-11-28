@@ -24,6 +24,7 @@ namespace Karesz
         void InitializeComponent()
         {
             this.monitorpanel2 = new System.Windows.Forms.Panel();
+            this.keyCountText = new System.Windows.Forms.Label();
             this.helpgomb = new System.Windows.Forms.Button();
             this.stepgomb = new System.Windows.Forms.Button();
             this.pausegomb = new System.Windows.Forms.Button();
@@ -40,6 +41,7 @@ namespace Karesz
             this.karesznagyításkeret = new System.Windows.Forms.PictureBox();
             this.mivanalattamnagyításkeret = new System.Windows.Forms.PictureBox();
             this.pályabox = new System.Windows.Forms.GroupBox();
+            this.legacycheck = new System.Windows.Forms.CheckBox();
             this.resetgomb = new System.Windows.Forms.Button();
             this.mivanitttextbox = new System.Windows.Forms.TextBox();
             this.mivanalattamlabel = new System.Windows.Forms.Label();
@@ -63,7 +65,7 @@ namespace Karesz
             this.pozíciólabel = new System.Windows.Forms.Label();
             this.monitorpanel1 = new System.Windows.Forms.Panel();
             this.képkeret = new System.Windows.Forms.PictureBox();
-            this.legacycheck = new System.Windows.Forms.CheckBox();
+            this.keyCount = new System.Windows.Forms.TextBox();
             this.monitorpanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.várakozásidő_updown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.várakozásidő_slider)).BeginInit();
@@ -79,6 +81,8 @@ namespace Karesz
             // 
             this.monitorpanel2.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.monitorpanel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.monitorpanel2.Controls.Add(this.keyCount);
+            this.monitorpanel2.Controls.Add(this.keyCountText);
             this.monitorpanel2.Controls.Add(this.helpgomb);
             this.monitorpanel2.Controls.Add(this.stepgomb);
             this.monitorpanel2.Controls.Add(this.pausegomb);
@@ -97,6 +101,16 @@ namespace Karesz
             this.monitorpanel2.Name = "monitorpanel2";
             this.monitorpanel2.Size = new System.Drawing.Size(159, 743);
             this.monitorpanel2.TabIndex = 2;
+            // 
+            // keyCountText
+            // 
+            this.keyCountText.AutoSize = true;
+            this.keyCountText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.keyCountText.Location = new System.Drawing.Point(11, 354);
+            this.keyCountText.Name = "keyCountText";
+            this.keyCountText.Size = new System.Drawing.Size(64, 17);
+            this.keyCountText.TabIndex = 37;
+            this.keyCountText.Text = "Kulcsok";
             // 
             // helpgomb
             // 
@@ -271,6 +285,16 @@ namespace Karesz
             this.pályabox.TabIndex = 46;
             this.pályabox.TabStop = false;
             this.pályabox.Text = "pálya";
+            // 
+            // legacycheck
+            // 
+            this.legacycheck.AutoSize = true;
+            this.legacycheck.Location = new System.Drawing.Point(58, 73);
+            this.legacycheck.Name = "legacycheck";
+            this.legacycheck.Size = new System.Drawing.Size(84, 17);
+            this.legacycheck.TabIndex = 48;
+            this.legacycheck.Text = "Legacy mód";
+            this.legacycheck.UseVisualStyleBackColor = true;
             // 
             // resetgomb
             // 
@@ -514,15 +538,14 @@ namespace Karesz
             this.képkeret.Paint += new System.Windows.Forms.PaintEventHandler(this.képkeret_Paint);
             this.képkeret.MouseDown += new System.Windows.Forms.MouseEventHandler(this.képkeret_MouseDown);
             // 
-            // legacycheck
+            // keyCount
             // 
-            this.legacycheck.AutoSize = true;
-            this.legacycheck.Location = new System.Drawing.Point(58, 73);
-            this.legacycheck.Name = "legacycheck";
-            this.legacycheck.Size = new System.Drawing.Size(84, 17);
-            this.legacycheck.TabIndex = 48;
-            this.legacycheck.Text = "Legacy mód";
-            this.legacycheck.UseVisualStyleBackColor = true;
+            this.keyCount.Location = new System.Drawing.Point(12, 374);
+            this.keyCount.Name = "keyCount";
+            this.keyCount.Size = new System.Drawing.Size(64, 20);
+            this.keyCount.TabIndex = 37;
+            this.keyCount.Text = "0";
+            this.keyCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Form1
             // 
@@ -611,5 +634,7 @@ namespace Karesz
         private Button helpgomb;
         private Button resetgomb;
         private CheckBox legacycheck;
+        private Label keyCountText;
+        private TextBox keyCount;
     }
 }

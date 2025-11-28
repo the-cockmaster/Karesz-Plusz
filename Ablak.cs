@@ -48,14 +48,22 @@ namespace Karesz
 		const int step = 3;
 		const int reset = 4;
 
-		#endregion
+		//ajtók
+		const int dopen = 9;
+		const int dclosed = 10;
+		const int key = 11;
 
-		#region Statikus változók
+		//other
+		const int tileTypes = 12;
 
-		static int idő = 0;
-		static int[] színkódok = new int[] { üres, fal, fekete, piros, zöld, sárga, hó, láva, víz };
-		static string[] színnév = new string[] { "üres", "fal", "fekete", "piros", "zöld", "sárga", "hó", "láva", "víz" };
-		static Color[] színek = { Color.White, Color.Brown, Color.Black, Color.Red, Color.Green, Color.Yellow, Color.White, Color.Orange, Color.Blue };
+        #endregion
+
+        #region Statikus változók
+
+        static int idő = 0;
+		static int[] színkódok = new int[] { üres, fal, fekete, piros, zöld, sárga, hó, láva, víz, dopen, dclosed, key };
+		static string[] színnév = new string[] { "üres", "fal", "fekete", "piros", "zöld", "sárga", "hó", "láva", "víz", "nyitott", "zárt", "kulcs" };
+		static Color[] színek = { Color.White, Color.Brown, Color.Black, Color.Red, Color.Green, Color.Yellow, Color.White, Color.Orange, Color.Blue, Color.FromArgb(181, 115, 0), Color.FromArgb(107, 68, 0), Color.LightGray };
 		static Random véletlen = new Random();
 		
 

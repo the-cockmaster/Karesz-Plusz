@@ -253,7 +253,7 @@ namespace Karesz
 
 			static void holtak_összegyűjtése()
 			{
-				Robot.Halállistához(r => pálya.MiVanItt(r.helyigény) == fal); // falba lép
+				Robot.Halállistához(r => pálya.MiVanItt(r.helyigény) == fal || pálya.MiVanItt(r.helyigény) == dclosed); // falba lép
 				Robot.Halállistához(r => !pálya.BenneVan(r.helyigény)); // kiesik a pályáról
 				Robot.Halállistához((r1, r2) => r1.helyigény == r2.helyigény); // egy helyre léptek
 				Robot.Halállistához((r1, r2) => r1.helyigény == r2.H && r2.helyigény == r1.H); // átmentek egymáson / megpróbáltak helyet cserélni
@@ -262,7 +262,7 @@ namespace Karesz
 			{
 				if (Név == "Golyesz")
 					pálya.LegyenItt(H, hó);
-				else
+				else if (pálya.MiVanItt(H) == üres)
 					pálya.LegyenItt(H, fekete);
 			}
 			static void Halállistához(Func<Robot, bool> predikátum)

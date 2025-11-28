@@ -29,9 +29,10 @@ namespace Karesz
 					Lépj();
 					Fordulj(balra);
                 }
-				Nyiss_ajtót();
                 while (!Van_e_előttem_fal())
                 {
+					if (Előtt_lévő_ajtó() == 0)
+						Nyiss_ajtót();
                     Lépj();
                 }
             };

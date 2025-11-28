@@ -231,16 +231,7 @@ namespace Karesz
 					StreamReader f = new StreamReader(fájlnév);
 					for (int y = 0; y < Y; ++y)
 					{
-						List<string> sor = f.ReadLine().Select(x => new string(x, 1)).ToList();
-						for (int i = 0; i < sor.Count; i++)
-						{
-							if (sor.Contains("\t"))
-							{
-								sor.Remove("\t");
-								i--;
-							}
-						}
-						//string[] sor = f.ReadLine().Split('\t');
+						string[] sor = f.ReadLine().Split('\t');
 						for (int x = 0; x < X; ++x)
 							tábla[x, y] = Convert.ToInt32(sor[x]);
 					}

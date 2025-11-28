@@ -418,6 +418,7 @@ namespace Karesz
                 if (Alatt_van_kulcs())
                 {
                     form.keyCount.Text = $"{int.Parse(form.keyCount.Text) + 1}";
+                    pálya.LegyenItt(H, üres);
                 }
                 else
                     Mondd("Nem tudom a kulcsot felvenni!");

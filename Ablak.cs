@@ -63,7 +63,7 @@ namespace Karesz
         static int idő = 0;
 		static int[] színkódok = new int[] { üres, fal, fekete, piros, zöld, sárga, hó, láva, víz, dopen, dclosed, key };
 		static string[] színnév = new string[] { "üres", "fal", "fekete", "piros", "zöld", "sárga", "hó", "láva", "víz", "nyitott", "zárt", "kulcs" };
-		static Color[] színek = { Color.White, Color.Brown, Color.Black, Color.Red, Color.Green, Color.Yellow, Color.White, Color.Orange, Color.Blue, Color.FromArgb(181, 115, 0), Color.FromArgb(107, 68, 0), Color.LightGray };
+		static Color[] színek = { Color.White, Color.Brown, Color.Black, Color.Red, Color.Green, Color.Yellow, Color.White, Color.Orange, Color.Blue, Color.FromArgb(181, 115, 0), Color.FromArgb(107, 68, 0), Color.Gray };
 		static Random véletlen = new Random();
 		
 

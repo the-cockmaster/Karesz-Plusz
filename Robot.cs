@@ -343,6 +343,7 @@ namespace Karesz
 				{
 					Mondd("Nincs kulcsom!");
 				}
+				Cselekvés_vége();
             }
             /// <summary>
             /// Elforgatja a robotot a megadott irányban. (Csak normális irányokra reagál.)
@@ -392,24 +393,38 @@ namespace Karesz
 					idő++;
 				}
 				Cselekvés_vége();
-			}
-			/// <summary>
-			/// Felveszi azt, amin éppen áll -- feltéve ha az nem fal, stb.
-			/// </summary>
-			public void Vegyél_fel_egy_kavicsot()
-			{
-				if (Alatt_van_kavics())
-				{
-					++kődb[pálya.MiVanItt(H) - 2];
-					pálya.LegyenItt(H, üres);
-					idő++;
-				}
-				else
-					Mondd(": Nem tudom a kavicsot felvenni!");
+            }
+            /// <summary>
+            /// Felveszi azt a kavicsot, amin éppen áll -- feltéve ha van.
+            /// </summary>
+            public void Vegyél_fel_egy_kavicsot()
+            {
+                if (Alatt_van_kavics())
+                {
+                    ++kődb[pálya.MiVanItt(H) - 2];
+                    pálya.LegyenItt(H, üres);
+                    idő++;
+                }
+                else
+                    Mondd(": Nem tudom a kavicsot felvenni!");
 
-				Cselekvés_vége();
-			}
-			public void Lőjj()
+                Cselekvés_vége();
+            }
+            /// <summary>
+            ///Felveszi azt a kulcsot, amin éppen áll -- feltéve ha van.
+            /// </summary>
+            public void Vegyél_fel_egy_kulcsot()
+            {
+                if (Alatt_van_kulcs())
+                {
+                    form.keyCount.Text = $"{int.Parse(form.keyCount.Text) + 1}";
+                }
+                else
+                    Mondd("Nem tudom a kulcsot felvenni!");
+
+                Cselekvés_vége();
+            }
+            public void Lőjj()
 			{
 				if (0 < kődb[hó - 2])
 				{

@@ -17,8 +17,24 @@ namespace Karesz
 		{
 			Robot.Get("Karesz").Feladat = delegate ()
 			{
-			
-			};
+				while (!Van_e_előttem_fal())
+				{
+					Lépj();
+					if (Van_e_itt_kulcs())
+						Vegyél_fel_egy_kulcsot();
+				}
+				while (Előtt_lévő_ajtó() != 0)
+				{
+                    Fordulj(jobbra);
+					Lépj();
+					Fordulj(balra);
+                }
+				Nyiss_ajtót();
+                while (!Van_e_előttem_fal())
+                {
+                    Lépj();
+                }
+            };
 		}
     }
 }

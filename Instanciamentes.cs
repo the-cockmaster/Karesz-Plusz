@@ -27,11 +27,13 @@ namespace Karesz
 			Robot.akit_kiválasztottak.Vegyél_fel_egy_kavicsot();
 		void Tegyél_le_egy_kavicsot(int szín = fekete) =>
 			Robot.akit_kiválasztottak.Tegyél_le_egy_kavicsot(szín);
-		//void ZMondd(string ezt)
-		//{ if (!legacy_mode) Robot.akit_kiválasztottak.Mondd(ezt); }
-		//void ZLőjj()
-		//{ if (!legacy_mode) Robot.akit_kiválasztottak.Lőjj(); }
-		bool Van_e_itt_Kavics() =>
+        //void ZMondd(string ezt)
+        //{ if (!legacy_mode) Robot.akit_kiválasztottak.Mondd(ezt); }
+        //void ZLőjj()
+        //{ if (!legacy_mode) Robot.akit_kiválasztottak.Lőjj(); }
+        void Nyiss_ajtót() => Robot.akit_kiválasztottak.Nyiss_ajtót();
+        void Vegyél_fel_egy_kulcsot() => Robot.akit_kiválasztottak.Vegyél_fel_egy_kulcsot();
+        bool Van_e_itt_Kavics() =>
 			Robot.akit_kiválasztottak.Alatt_van_kavics();
 		int Mi_van_alattam() =>
 			Robot.akit_kiválasztottak.Alatt_ez_van();
@@ -49,6 +51,10 @@ namespace Karesz
 			Robot.akit_kiválasztottak.Hőmérő();
 		//(int, int) ZPozíció() =>
 		//	Robot.akit_kiválasztottak.Hol_vagyok();
+
+		bool Van_e_itt_kulcs() => Robot.akit_kiválasztottak.Alatt_van_kulcs();
+		int Előtt_lévő_ajtó() => Robot.akit_kiválasztottak.Előtte_lévő_ajtó();
+		int Kulcsok_száma() => Robot.akit_kiválasztottak.Kulcsok_száma();
 
         #endregion
 
